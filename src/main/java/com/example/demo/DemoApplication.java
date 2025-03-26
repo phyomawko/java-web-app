@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+		String dbUser = "admin";
+        	String dbPassword = "password123"; // Hardcoded password (Security issue)
+       		System.out.println("Connecting to DB with user: " + dbUser);
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
