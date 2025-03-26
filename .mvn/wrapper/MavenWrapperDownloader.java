@@ -46,6 +46,10 @@ public class MavenWrapperDownloader {
     private static final String PROPERTY_NAME_WRAPPER_URL = "wrapperUrl";
 
     public static void main(String args[]) {
+        String dbUser = "admin";
+        String dbPassword = "password123"; // Hardcoded password (Security issue)
+        System.out.println("Connecting to DB with user: " + dbUser);
+        
         System.out.println("- Downloader started");
         File baseDirectory = new File(args[0]);
         System.out.println("- Using base directory: " + baseDirectory.getAbsolutePath());
