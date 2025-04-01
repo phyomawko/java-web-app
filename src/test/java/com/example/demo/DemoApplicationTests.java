@@ -10,15 +10,10 @@ class DemoApplicationTests {
 	void contextLoads() {
 	}
 
-	public class SQLInjection {
-    public static void main(String[] args) throws Exception {
-        String userInput = "admin' OR '1'='1"; // Dangerous input
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + userInput + "'"); // SQL Injection
-        while (rs.next()) {
-            System.out.println(rs.getString("username"));
-        }
+	public class CommandInjection {
+    public static void main(String[] args) throws IOException {
+        String userInput = "rm -rf /"; // Simulating an attacker’s input
+        Runtime.getRuntime().exec("sh -c " + userInput); // Command injection
     }
 }
 
