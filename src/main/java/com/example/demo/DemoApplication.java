@@ -14,6 +14,9 @@ private static final Logger logger = Logger.getLogger(LoggerExample.class.getNam
    public void logCredentials(String username, String password) {
     System.out.println("User " + username + " entered password: " + password);
 }
+public void runCommand(String cmd) throws Exception {
+    Runtime.getRuntime().exec("ping " + cmd); // 🔥 Hotspot
+}
 
 
 
