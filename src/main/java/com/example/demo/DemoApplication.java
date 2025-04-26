@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-	public String authenticate(String username, String password) {
-  // ....
-  MyUserDetailsService s1 = new MyUserDetailsService();
-  MyUserPrincipal u1 = s1.loadUserByUsername(username);
+	public class AuthService {
 
-  if(u1 == null) {
-    throw new BadCredentialsException(username+" doesn't exist in our database"); // Sensitive
+  public String authenticate(String username, String password) {
+    // Simulate a user lookup
+    if ("admin".equals(username)) {
+      // check password, etc.
+      return "Authenticated";
+    } else {
+      // User enumeration vulnerability — disclosing valid usernames
+      throw new RuntimeException("User " + username + " not found"); // Noncompliant
+    }
   }
-  // ....
 }
 
 
