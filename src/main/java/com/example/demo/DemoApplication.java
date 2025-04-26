@@ -11,9 +11,10 @@ public class DemoApplication {
 	
 private static final Logger logger = Logger.getLogger(LoggerExample.class.getName());
 
-    public void logUser(String username, String password) {
-        logger.info("Logging in user: " + username + " with password: " + password); // 🔥 Hotspot
-    }
+   public void logCredentials(String username, String password) {
+    System.out.println("User " + username + " entered password: " + password);
+}
+
 
 
 
