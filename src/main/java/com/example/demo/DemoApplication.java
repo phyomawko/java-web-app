@@ -10,14 +10,17 @@ import java.util.Random;
 @RestController
 public class DemoApplication {
 	
-private static final Logger logger = Logger.getLogger(LoggerExample.class.getName());
 
-   public void logCredentials(String username, String password) {
-    System.out.println("User " + username + " entered password: " + password);
-}
-public void runCommand(String cmd) throws Exception {
-    Runtime.getRuntime().exec("ping " + cmd); // 🔥 Hotspot
-}
+public static void main(String[] args) throws Exception {
+        String userInput = "admin' OR '1'='1"; // Dangerous input
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "root");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE username = '" + userInput + "'"); // SQL Injection
+        while (rs.next()) {
+            System.out.println(rs.getString("username"));
+        }
+    }
+
 public void generateSessionId() {
 Random random = new Random(); // Security Hotspot: Not cryptographically secure
 int sessionId = random.nextInt();
