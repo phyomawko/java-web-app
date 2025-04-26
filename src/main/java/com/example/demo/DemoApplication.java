@@ -8,13 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-	public class ShellExecutor {
+	Runtime.getRuntime().exec("make");  // Sensitive
+Runtime.getRuntime().exec(new String[]{"make"});  // Sensitive
 
-    public void runCommand(String userInput) throws Exception {
-        // Security Hotspot: user input directly used in command
-        Runtime.getRuntime().exec("ping " + userInput);
-    }
-}
+ProcessBuilder builder = new ProcessBuilder("make");  // Sensitive
+builder.command("make");  // Sensitive
 
 
 
