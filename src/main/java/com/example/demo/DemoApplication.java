@@ -25,6 +25,13 @@ public void generateSessionId() {
 Random random = new Random(); // Security Hotspot: Not cryptographically secure
 int sessionId = random.nextInt();
     }
+public class RegexDoSExample {
+    public void vulnerableRegex(String input) {
+        // Security Hotspot: Potential for ReDoS (Regular Expression Denial of Service)
+        input.replaceAll("(a+)+", "b");
+    }
+}
+
 
 
 
