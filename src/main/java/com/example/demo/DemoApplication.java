@@ -8,19 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-	public class AuthService {
+	public class ShellExecutor {
 
-    public void login(String username, String password) {
-        if (!"admin".equals(username)) {
-            // ✅ This will be marked as a "Security Hotspot"
-            throw new RuntimeException("User '" + username + "' not found");
-        }
-
-        if (!"secret".equals(password)) {
-            throw new RuntimeException("Incorrect password");
-        }
+    public void runCommand(String userInput) throws Exception {
+        // Security Hotspot: user input directly used in command
+        Runtime.getRuntime().exec("ping " + userInput);
     }
 }
+
 
 
 
