@@ -8,11 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-	Runtime.getRuntime().exec("make");  // Sensitive
-Runtime.getRuntime().exec(new String[]{"make"});  // Sensitive
-
-ProcessBuilder builder = new ProcessBuilder("make");  // Sensitive
-builder.command("make");  // Sensitive
+	
 
 
 
