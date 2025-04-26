@@ -8,18 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class DemoApplication {
-	public class AuthService {
+	@Bean(name = "multipartResolver")
+public CommonsMultipartResolver multipartResolver() {
+  CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+  multipartResolver.setMaxUploadSize(104857600); // Sensitive (100MB)
+  return multipartResolver;
+}
 
-  public String authenticate(String username, String password) {
-    // Simulate a user lookup
-    if ("admin".equals(username)) {
-      // check password, etc.
-      return "Authenticated";
-    } else {
-      // User enumeration vulnerability — disclosing valid usernames
-      throw new RuntimeException("User " + username + " not found"); // Noncompliant
-    }
-  }
+@Bean(name = "multipartResolver")
+public CommonsMultipartResolver multipartResolver() {
+  CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(); // Sensitive, by default if maxUploadSize property is not defined, there is no limit and thus it's insecure
+  return multipartResolver;
+}
+
+@Bean
+public MultipartConfigElement multipartConfigElement() {
+  MultipartConfigFactory factory = new MultipartConfigFactory(); // Sensitive, no limit by default
+  return factory.createMultipartConfig();
 }
 
 
